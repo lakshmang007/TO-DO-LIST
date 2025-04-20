@@ -82,6 +82,45 @@ h1 {
   z-index: 2;
 }
 
+/* Blood dripping effect for the title */
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #8b0000 30%, #8b0000 70%, transparent 100%);
+  box-shadow: 0 0 8px rgba(139, 0, 0, 0.7);
+}
+
+/* Blood drops from title */
+h1::before {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  width: 10px;
+  height: 15px;
+  background-color: #8b0000;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  box-shadow: 0 0 8px rgba(139, 0, 0, 0.7);
+  filter: blur(1px);
+  animation: drip 4s infinite;
+}
+
+@keyframes drip {
+  0%, 100% {
+    transform: translateY(0) translateX(-50%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(20px) translateX(-50%);
+    opacity: 1;
+  }
+}
+
 .death-note-cover {
   position: absolute;
   top: 0;
@@ -158,6 +197,45 @@ h1 {
   transform: translateX(5px);
 }
 
+/* Blood effect for todo items */
+.todo-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -3px; /* Align with the left border */
+  width: 3px;
+  height: 100%;
+  background-color: #8b0000;
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: transform 0.5s ease;
+  z-index: 1;
+}
+
+.todo-item:hover::before {
+  transform: scaleY(1);
+}
+
+/* Blood drop at the bottom of todo items */
+.todo-item::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: -3px;
+  width: 6px;
+  height: 10px;
+  background-color: #8b0000;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  box-shadow: 0 0 5px rgba(139, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.todo-item:hover::after {
+  opacity: 1;
+}
+
 .todo-item-header {
   display: flex;
   justify-content: space-between;
@@ -224,6 +302,22 @@ h1 {
 
 .checkbox-container input:checked ~ .checkmark {
   background-color: #c00000;
+  animation: blood-fill 0.5s ease-out forwards;
+}
+
+@keyframes blood-fill {
+  0% {
+    background-color: transparent;
+    box-shadow: none;
+  }
+  50% {
+    background-color: #8b0000;
+    box-shadow: 0 0 10px rgba(139, 0, 0, 0.7);
+  }
+  100% {
+    background-color: #c00000;
+    box-shadow: 0 0 5px rgba(139, 0, 0, 0.5);
+  }
 }
 
 .checkmark:after {
@@ -333,6 +427,82 @@ button:hover {
   border-radius: 5px;
   backdrop-filter: blur(5px);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Blood Loading Animation */
+.blood-loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.blood-title-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.blood-title {
+  font-family: 'Old English Text MT', 'Cinzel', serif;
+  font-size: 5rem;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  z-index: 2;
+  letter-spacing: 5px;
+}
+
+.blood-drop {
+  position: absolute;
+  top: 0;
+  background-color: #8b0000;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  box-shadow: 0 0 10px rgba(139, 0, 0, 0.7);
+  z-index: 1;
+  filter: blur(2px);
+}
+
+.blood-loading-text {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  z-index: 2;
+}
+
+.blood-text {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.5rem;
+  color: #ffffff;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.blood-loading-bar {
+  width: 300px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.blood-loading-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #8b0000, #ff0000);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
 }
 
 .loading-text {
@@ -512,6 +682,17 @@ button:hover {
   color: #ffffff;
   background-color: #c00000;
   transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(139, 0, 0, 0.7);
+  animation: blood-pulse 1s infinite;
+}
+
+@keyframes blood-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(139, 0, 0, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.9);
+  }
 }
 
 /* Login Styles */
