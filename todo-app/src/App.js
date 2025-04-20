@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TodoList from './components/TodoList';
-import BloodLoadingAnimation from './components/BloodLoadingAnimation';
+import ModernLoadingAnimation from './components/ModernLoadingAnimation';
 import Login from './components/Login';
 import VideoBackground from './components/VideoBackground';
 import ThreeScene from './components/ThreeScene';
@@ -46,7 +46,7 @@ function App() {
   // Render content based on loading and login state
   const renderContent = () => {
     if (loading) {
-      return <BloodLoadingAnimation />;
+      return <ModernLoadingAnimation />;
     }
 
     if (!user) {
@@ -61,7 +61,7 @@ function App() {
       <VideoBackground />
       <ThreeScene />
       <div className="App">
-        <h1>STUDY NOTE</h1>
+        <h1>Study Space</h1>
         {renderContent()}
         <ModelContainer />
       </div>
