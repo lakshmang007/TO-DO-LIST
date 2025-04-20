@@ -386,12 +386,38 @@ button:hover {
   height: 50px;
   animation: float 3s ease-in-out infinite;
   filter: drop-shadow(0 0 5px rgba(200, 0, 0, 0.5));
+  z-index: 1;
 }
 
 @keyframes float {
   0% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(-10px) rotate(5deg); }
   100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Three.js Scene Styling */
+.three-scene {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.three-scene canvas {
+  touch-action: none;
+}
+
+.three-model-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  z-index: 1;
+  pointer-events: none;
 }
 
 /* Page corners */
