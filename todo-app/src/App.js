@@ -1,13 +1,11 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import React, { useState, useEffect } from 'react';
 import TodoList from './components/TodoList';
 import LoadingAnimation from './components/LoadingAnimation';
 import Login from './components/Login';
 import VideoBackground from './components/VideoBackground';
+import ThreeScene from './components/ThreeScene';
 import ModelContainer from './components/ModelContainer';
 import './App.css';
-
-// Lazy load the ThreeScene component to improve initial load time
-const ThreeScene = lazy(() => import('./components/ThreeScene'));
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -61,9 +59,7 @@ function App() {
   return (
     <>
       <VideoBackground />
-      <Suspense fallback={null}>
-        <ThreeScene />
-      </Suspense>
+      <ThreeScene />
       <div className="App">
         <h1>STUDY NOTE</h1>
         {renderContent()}
